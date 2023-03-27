@@ -32,11 +32,7 @@ class MainActivity : AppCompatActivity() {
             drawerLayout.addDrawerListener(toggle)
             toggle.syncState()
             supportActionBar?.setDisplayHomeAsUpEnabled(true)
-            if (savedInstanceState == null) {
-                supportFragmentManager.beginTransaction()
-                    .replace(R.id.flContent, HomePageFragment()).commit()
-                nvView.setCheckedItem(R.id.Home)
-            }
+
          nvView.setNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.Home -> supportFragmentManager.beginTransaction()
@@ -55,13 +51,6 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    override fun onBackPressed() {
-        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
-            drawerLayout.closeDrawer(GravityCompat.START)
-        } else {
-            onBackPressedDispatcher.onBackPressed()
-        }
-    }
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (toggle.onOptionsItemSelected(item)){
             true
